@@ -1,7 +1,9 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
     <head>
         <title>Pokemon Quiz</title>
+        <link rel="stylesheet" type="text/css" href="{%static '../static/css/style.css' %}">
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script>
             let correct_name = '{{ POKE_NAME }}';
@@ -9,7 +11,7 @@
         </script>
         <script>
             $(document).ready(function(){
-                $('#submit_button').click(function(){
+                $('#submit_button').click(function(e){
                     let guessed_name = $('#pokemon_name').val();
                     let correct_name = '{{ POKE_NAME }}';
                     if(guessed_name === correct_name){
@@ -26,7 +28,9 @@
         <img src="{{ image_url }}" alt="{{ name }}">
         <form action="{% url 'index' %}" method="post">
             {% csrf_token %}
-            <label for="pokemon_name">Enter the Pokemon's name:</label>
+                <h3>
+                    <label for="pokemon_name">Enter the Pokemon's name</label>
+                </h3>
             <input type="text" id="pokemon_name" name="pokemon_name">
             <button id="submit_button">Submit</button>
         </form>

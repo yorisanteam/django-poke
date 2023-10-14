@@ -1,6 +1,6 @@
+from cgi import test
 import requests, random, json, os
 from django.shortcuts import render
-
 from quiz.forms import PokemonForm
 from .models import Pokemon
 
@@ -23,7 +23,6 @@ def get_pokemon_data():
     name = get_japanese_name(random_pokemon_id)
     return name, data['sprites']['front_default']
 
-
 def index(request):
     POKE_NAME, POKE_IMAGE = get_pokemon_data()
     name, image_url = POKE_NAME, POKE_IMAGE
@@ -32,7 +31,9 @@ def index(request):
         if form.is_valid():
             guessed_name = form.cleaned_data['pokemon_name']
             correct_name = POKE_NAME
+
     else:
         form = PokemonForm()
+
     return render(request, 'quiz/index.html', {'name': name, 'image_url': image_url, 'form': form, 'POKE_NAME': POKE_NAME})
 
