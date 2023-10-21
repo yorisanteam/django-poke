@@ -36,4 +36,3 @@ def index(request):
         form = PokemonForm()
 
     return render(request, 'quiz/index.html', {'name': name, 'image_url': image_url, 'form': form, 'POKE_NAME': POKE_NAME})
-
